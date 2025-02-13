@@ -7,3 +7,6 @@ Sort:
 
 closestzero:
 	cc lab1/ClosestZero.c -o Result.out
+
+hands:
+	cc lab1/hands.c -o Result.out

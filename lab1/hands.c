@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define FILE_NAME "handsinp"
+#define FILE_NAME "./inputs/lab1/hands"
 
 
 int GetFileSize(FILE *fptr)
@@ -33,11 +33,11 @@ int main()
     {
             if(currentChar == '\n' || currentChar == ' ' || currentChar == '.')
                 continue;
-            int index = (int)(currentChar - '0');
-            if(!numbersOnField[index])
+            int inpNum = (int)currentChar - '0';
+            if(numbersOnField[inpNum] == 0)
                 possibleSolutions++;
-            numbersOnField[index]++;
-            if(numbersOnField[index] == maxAmmount + 1)
+            numbersOnField[inpNum]++;
+            if(numbersOnField[inpNum] == maxAmmount + 1)
                 possibleSolutions--;
     }
     printf("Result: %d\n", possibleSolutions);

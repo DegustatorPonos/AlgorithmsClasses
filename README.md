@@ -14,5 +14,5 @@ The list of possible builds is as follows:
 LAB ID | Name | Command | Task description |
 -------|------|---------|------------------|
 1| Closest zero |```make closestzeero```|[Description](tasks/lab1/ClosestZero)| 
-1| Hands |``` make hands ```|TODO:Add| 
+1| Hands |``` make hands ```|[Description](tasks/lab1/Hands)| 
 1| Symmetric diff |``` make symdiff ```|TODO:Add| 
