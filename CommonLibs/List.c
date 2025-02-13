@@ -1,5 +1,4 @@
-#include <array>
-#include <cstdlib>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "List.h"
@@ -46,10 +45,10 @@ void AddCapacityToList(LIST *list)
     list->array = newArray;
 }
 
-// TEMP
-void PrintIntArray(int *array, int length)
+void PrintIntArray(int *array, int length, bool PrintBrackets)
 {
-    printf("{");
+    if(PrintBrackets)
+        printf("{");
     for(int i = 0; i < length; i++)
     {
         if(i < length - 1)
@@ -57,7 +56,8 @@ void PrintIntArray(int *array, int length)
         else 
             printf("%d", array[i]);
     }
-    printf("}\n");
+    if(PrintBrackets)
+        printf("}\n");
 }
 
 void RemoveAt(LIST *list, int position)
@@ -77,8 +77,28 @@ void RemoveAt(LIST *list, int position)
     list->Length -= 1;
 }
 
+void MapSortedList(LIST *list)
+{
+    if(list->Length <= 1)
+    {
+        return;
+    }
+    int PreviousValue = list->array[0];
+    int i = 1;
+    while(i < list->Length)
+    {
+        if(PreviousValue == list->array[i])
+        {
+            RemoveAt(list, i);
+            continue;
+        }
+        PreviousValue = list->array[i];
+        i++;
+    }
+}
+
 void PrintListInfo(LIST *list)
 {
     printf("Length: %d; Capacity: %d; Contents: ", list->Length, list->Capacity);
-    PrintIntArray(list->array, list->Length);
+    PrintIntArray(list->array, list->Length, true);
 }

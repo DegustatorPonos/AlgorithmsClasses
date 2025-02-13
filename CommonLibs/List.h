@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 typedef struct{
     int *array;
     int Capacity;
@@ -10,3 +12,5 @@ void AppendToList(LIST *list, int toAdd);
 void AddCapacityToList(LIST *list);
 void PrintListInfo(LIST *list);
 void RemoveAt(LIST *list, int position);
+void MapSortedList(LIST *list);
+void PrintIntArray(int *array, int length, bool PrintBrackets);

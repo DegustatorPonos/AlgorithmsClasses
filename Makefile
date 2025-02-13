@@ -1,8 +1,6 @@
 List:
-	mkdir build
 	cc -c ./CommonLibs/List.c -o build/List.o
 Sort:
-	mkdir build
 	cc -c ./CommonLibs/sort.c -o build/Sort.o
 
 closestzero:
@@ -10,3 +8,6 @@ closestzero:
 
 hands:
 	cc lab1/hands.c -o Result.out
+
+symdiff: List Sort
+	cc lab1/SymDiff.c build/Sort.o build/List.o -o Result.out
