@@ -91,18 +91,27 @@ LIST *GetCommonElements(LIST *FirstList, LIST *SecondList)
     if(FirstList->Length == 0 || SecondList->Length == 0)
         return outpList;
     int SecondListIndex = 0;
+    // Iterating over the first array
     for(int FirstArrayIndex = 0; FirstArrayIndex < FirstList->Length; FirstArrayIndex++)
     {
+        // If the second array is smaller than the first
         if(FirstArrayIndex > SecondList->Length - 1)
         {
             AppendToList(outpList, FirstList->array[FirstArrayIndex]);
             continue;
         }
+
         int toCompare = FirstList->array[FirstArrayIndex];
-
-        if(SecondList->array[SecondListIndex] != toCompare && SecondList->array[SecondListIndex+1] != toCompare )
+        // If the next element is still bigger than the one in the first array
+        // => there is no such element in the 2nd array
+        if(SecondList->array[SecondListIndex] > toCompare)
+        {
             AppendToList(outpList, toCompare);
+            continue;
+        }
 
+        // Iterating through second array. Since they are sorted and mapped, if the element is greater than
+        // the one in the second it cannot be before the lesser one
         while(SecondList->array[SecondListIndex] <= toCompare && SecondListIndex < SecondList->Length)
         {
             if(SecondList->array[SecondListIndex] != toCompare)
@@ -110,6 +119,8 @@ LIST *GetCommonElements(LIST *FirstList, LIST *SecondList)
             SecondListIndex++;
         }
     }
+
+    // If the first array is smaller than the second
     for(int i = SecondListIndex; i < SecondList->Length; i++)
     {
         AppendToList(outpList, SecondList->array[i]);
