@@ -13,6 +13,6 @@ This project uses make as a build tool. You can specify what task you are buildi
 The list of possible builds is as follows:
 LAB ID | Name | Command | Task description |
 -------|------|---------|------------------|
-1| Closest zero |```make closestzeero```|[Description](tasks/lab1/ClosestZero)| 
+1| Closest zero |```make closestzero```|[Description](tasks/lab1/ClosestZero)| 
 1| Hands |``` make hands ```|TODO:Add| 
 1| Symmetric diff |``` make symdiff ```|TODO:Add| 
