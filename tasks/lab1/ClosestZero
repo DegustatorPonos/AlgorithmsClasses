@@ -1,0 +1,13 @@
+The street where Timofey wants to live has a length of n, i.e. it consists of n
+identical consecutive plots. On each plot either a house has already been built, or
+the plot is empty. Timofey is looking for a place to build his house. He is very sociable
+and does not want to live far from other people living on this street.
+In order to optimally choose a place for construction, Timofey wants to know the distance to the nearest empty plot for each
+plot. (for an empty plot, this value will be zero - the distance to itself)
+Your task is to help Timofey calculate the required distances. To do this, you have a
+street map. The houses in Timofey's city were numbered in the order in which they were built,
+so their numbers on the map are not ordered in any way. Empty plots are marked with zeros.
+Input data format:
+The first line contains the street length – n. The next line contains n
+non-negative integers – house numbers and designations of empty areas on the map
+(zeros). It is guaranteed that there is at least one zero in the sequence.
