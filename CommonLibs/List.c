@@ -15,6 +15,7 @@ LIST *ListInit()
 void ClearList(LIST *list)
 {
     free(list->array);
+    list->Length = 0;
 }
 
 void AppendToList(LIST *list, int toAdd)

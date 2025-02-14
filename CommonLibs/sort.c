@@ -1,8 +1,5 @@
 #include "sort.h"
 #include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void swap(int *array, int i, int j)
 {
@@ -35,69 +32,29 @@ void Bubblesort(int* array, int length)
     }
 }
 
-// ALGO: https://en.wikipedia.org/wiki/Quicksort
-
-int Partition(int* array, int length, int pivot)
+void QuickSort(int* array, int start, int end)
 {
-    int leftIndex = 0;
-    int rightIndex = length - 2; // The last one is pivot
-    // Hoare partitioning
-    while(rightIndex - leftIndex >= 1)
-    {
-        if(array[leftIndex] >= pivot && array[rightIndex] <= pivot)
-        {
-            printf("Swapped\n");
-            swap(array, leftIndex, rightIndex);
-        }
-        if(array[leftIndex] <= pivot)
-            leftIndex++;
-        if(array[rightIndex] >= pivot)
-            rightIndex--;
-    }
-    // Determining a new pivot position
-    int newPivotPos = 0;
-    for(int i = 0; i < length; i++)
-    {
-        newPivotPos = i;
-        if(array[i] > pivot)
-            break;
-    }
-    for(int i = length; i >= newPivotPos; i--)
-        array[i] = array[i - 1];
-    array[newPivotPos] = pivot;
-    return newPivotPos;
-}
-
-void QuickSort(int* array, int length)
-{
-    if(length < 1)
-        return;
-    if(length == 2)
-    {
-        if(array[0] > array[1])
-            swap(array, 0, 1);
-        return;
-    }
-    int pivot = array[length - 1];
+    // int pivot = array[(end + start)/2];
+    int pivot = array[start];
     // Partitioning
-    int pivotPos = Partition(array, length, pivot);
-    // Separation
-    int leftSizeLength = pivotPos;
-    int rightSizeLength = length - pivotPos - 1;
-    if(leftSizeLength > 0)
+    int leftPos = start;
+    int rightPos = end;
+    while(leftPos <= rightPos)
     {
-        int *leftSize = malloc(sizeof(int)*leftSizeLength);
-        memcpy(leftSize, array, sizeof(int)*leftSizeLength);
-        QuickSort(leftSize, leftSizeLength);
-        memcpy(array, leftSize, sizeof(int)*leftSizeLength);
-        // free(leftSize);
+        while(array[leftPos] < pivot)
+            leftPos++;
+        while(array[rightPos] > pivot)
+            rightPos--;
+        if(leftPos <= rightPos)
+        {
+            swap(array, rightPos, leftPos);
+            leftPos++;
+            rightPos--;
+        }
     }
-    if(rightSizeLength > 0)
-    {
-        int *rightSize = malloc(sizeof(int)*rightSizeLength);
-        memcpy(rightSize, &array[pivotPos + 1], sizeof(int)*rightSizeLength);
-        QuickSort(rightSize, rightSizeLength);
-        memcpy(&array[pivotPos + 1], rightSize, sizeof(int)*rightSizeLength);
-        // free(rightSize);
-    }
+    // Recursion
+    if(start < rightPos)
+        QuickSort(array, start, rightPos);
+    if(leftPos < end)
+        QuickSort(array, leftPos, end);
 }
