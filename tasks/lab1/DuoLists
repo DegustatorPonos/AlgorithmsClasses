@@ -1,0 +1,4 @@
+Given two arrays sorted in non-decreasing order. It is required to find the number of such elements that are present in both arrays. For example, in arrays (0, 0, 1, 1, 2, 3) and (0, 1, 1, 2) there are four common elements - (0, 1, 1, 2).
+The first line contains the sizes of arrays N1 and N2. The following N1 lines
+contain the elements of the first array, the following N2 lines - the elements of the second array.
+The program must output exactly one number - the number of common elements.

@@ -11,3 +11,6 @@ hands:
 
 symdiff: List Sort
 	cc lab1/SymDiff.c build/Sort.o build/List.o -o Result.out
+
+duoarrays: List 
+	cc lab1/DuoArrays.c build/List.o -o Result.out
