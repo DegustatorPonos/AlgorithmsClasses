@@ -11,8 +11,10 @@ Some things have to be clarified here:
 # BUILDING
 This project uses make as a build tool. You can specify what task you are building in the lab*id* dir.
 The list of possible builds is as follows:
-LAB ID | Name | Command | Task description |
--------|------|---------|------------------|
-1| Closest zero |```make closestzeero```|[Description](tasks/lab1/ClosestZero)| 
-1| Hands |``` make hands ```|[Description](tasks/lab1/Hands)| 
-1| Symmetric diff |``` make symdiff ```|[Description](tasks/lab1/SymDiff)| 
+ ID | Name | Command | Task description |
+----|------|---------|------------------|
+1.1 | Closest zero |```make closestzeero```|[Description](tasks/lab1/ClosestZero)| 
+1.2 | Hands |``` make hands ```|[Description](tasks/lab1/Hands)| 
+1.3 | Symmetric diff |``` make symdiff ```|[Description](tasks/lab1/SymDiff)| 
+1.4 | Duo arrays |``` make duoarrays ```|[Description](tasks/lab1/DuoLists)| 
+1.5 | Long sum |``` make longsum ```|[Description](tasks/lab1/LongSum)| 

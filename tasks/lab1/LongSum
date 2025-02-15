@@ -1,0 +1,7 @@
+Three lines are fed to the input. The first contains the representation of a long decimal
+number (the first operand), the second - the representation of the operation, the + and - lines, the third - the representation of the second operand.
+The length of the first and third lines is limited to 1000 characters. The second line
+contains exactly one character.
+It is required to perform the operation and output the result in decimal representation.
+
+Note: Try to implement the program in such a way that it can be used in the future. In other works of our course there are problems that require long arithmetic.

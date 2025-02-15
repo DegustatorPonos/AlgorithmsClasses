@@ -2,6 +2,8 @@ List:
 	cc -c ./CommonLibs/List.c -o build/List.o
 Sort:
 	cc -c ./CommonLibs/sort.c -o build/Sort.o
+Longop:
+	cc -c ./CommonLibs/longop.c -o build/Longop.o
 
 closestzero:
 	cc lab1/ClosestZero.c -o Result.out
@@ -14,3 +16,6 @@ symdiff: List Sort
 
 duoarrays: List 
 	cc lab1/DuoArrays.c build/List.o -o Result.out
+
+longsum: Longop
+	cc lab1/LongSum.c build/Longop.o -o Result.out
