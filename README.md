@@ -13,8 +13,17 @@ This project uses make as a build tool. You can specify what task you are buildi
 The list of possible builds is as follows:
  ID | Name | Command | Task description |
 ----|------|---------|------------------|
-1.1 | Closest zero |```make closestzeero```|[Description](tasks/lab1/ClosestZero)| 
+1.1 | Closest zero |```make closestzero```|[Description](tasks/lab1/ClosestZero)| 
 1.2 | Hands |``` make hands ```|[Description](tasks/lab1/Hands)| 
 1.3 | Symmetric diff |``` make symdiff ```|[Description](tasks/lab1/SymDiff)| 
 1.4 | Duo arrays |``` make duoarrays ```|[Description](tasks/lab1/DuoLists)| 
 1.5 | Long sum |``` make longsum ```|[Description](tasks/lab1/LongSum)| 
+
+# TESTS
+**How to run tests**
+- Build teh correct app
+- Run test.sh with 2 arguments. The first argument is a folder with test. The second is a file the program reads from.
+
+**How to write tests**
+- Make a *testname*.in file with a desired input
+- Make a *testname*.res with  desired result
