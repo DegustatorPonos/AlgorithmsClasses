@@ -61,7 +61,11 @@ int main()
 
     ClaculateDistance(street, streetLength);
     for(int i = 0; i < streetLength; i++)
-        printf("%d ", street[i]);
+    {
+        printf("%d", street[i]);
+        if(i != streetLength - 1)
+            printf(" ");
+    }
     printf("\n");
     free(buf);
     free(street);

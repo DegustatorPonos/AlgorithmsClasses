@@ -19,10 +19,16 @@ InpFile=$2
 RunTest() {
     echo "Running the test \"${1}\""
     cat $1 > $InpFile
-    echo "Result/expected"
-    $BinName
-    echo --------------------
-    cat $2
+    result="${BinName}"
+    if [[ $($BinName | xargs) == $(cat $2 | xargs) ]]; then
+        echo Test passed
+    else 
+        echo "Test failed."
+        echo "Result/expected"
+        $BinName
+        echo --------------------
+        cat $2
+    fi
     echo ====================
 }
 
