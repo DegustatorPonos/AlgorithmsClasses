@@ -43,6 +43,11 @@ LARGE_INT *atoli(char *str)
 
 void PrintLargeInt(LARGE_INT *toPrint)
 {
+    if(toPrint->Numbers->Length == 0)
+    {
+        printf("0\n");
+        return;
+    }
     if(toPrint->isNegative)
         printf("-");
     for(int i = toPrint->Numbers->Length - 1; i >= 0; i--)
@@ -163,8 +168,6 @@ LARGE_INT *Subtract(LARGE_INT *first, LARGE_INT *second)
             shouldBeNegative = true;
             break;
     }
-    printf("Minuend is ");
-    PrintLargeInt(minuend);
 
     // Subtraction
     // Set this bool to true if you loan from the nextpower of 10
