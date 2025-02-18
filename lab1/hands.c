@@ -40,7 +40,7 @@ int main()
             if(numbersOnField[inpNum] == maxAmmount + 1)
                 possibleSolutions--;
     }
-    printf("Result: %d\n", possibleSolutions);
+    printf("%d\n", possibleSolutions);
     free(buf);
     free(numbersOnField);
     fclose(fptr);
