@@ -35,6 +35,6 @@ RunTest() {
 
 for test in $(ls $1 | grep .in)
 do
-    OutFile=$(echo $test | sed -e 's/in/res/g')
+    OutFile=$(echo $test | sed -e 's/in/testres/g')
     RunTest "${1}${test}" "${1}${OutFile}"  
 done
