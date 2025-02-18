@@ -23,7 +23,8 @@ The list of possible builds is as follows:
 **How to run tests**
 - Build teh correct app
 - Run test.sh with 2 arguments. The first argument is a folder with test. The second is a file the program reads from.
+- * If it passes the ```$'\r': command not found``` error run ```sed -i 's/\r$//' ./test.sh``` command *
 
 **How to write tests**
 - Make a *testname*.in file with a desired input
-- Make a *testname*.res with  desired result
+- Make a *testname*.testres with  desired result
