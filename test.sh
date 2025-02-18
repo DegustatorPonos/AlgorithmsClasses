@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 BinName="./Result.out"
 
@@ -20,7 +20,7 @@ RunTest() {
     echo "Running the test \"${1}\""
     cat $1 > $InpFile
     result="${BinName}"
-    if [[ $($BinName | xargs) == $(cat $2 | xargs) ]]; then
+    if [[ $($BinName | sed -e 's/[[:space:]]*$//') == $(cat $2 | sed -e 's/[[:space:]]*$//') ]]; then
         echo Test passed
     else 
         echo "Test failed."
