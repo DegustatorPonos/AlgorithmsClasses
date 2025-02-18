@@ -24,9 +24,10 @@ int main()
     opSymbol = fgets(opSymbol, 3, fptr);
     buf2 = fgets(buf2, FileSize, fptr);
 
-
-    long result = PerformPoeration(buf1, buf2, opSymbol[0]);
-    printf("%ld\n", result);
+    LARGE_INT *array1 = atoli(buf1);
+    LARGE_INT *result = PerformOperation(buf1, buf2, opSymbol[0]);
+    PrintLargeInt(result);
+    // printf("%ld\n", result);
 
 
     free(buf1);

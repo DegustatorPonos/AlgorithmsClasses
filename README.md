@@ -13,11 +13,11 @@ This project uses make as a build tool. You can specify what task you are buildi
 The list of possible builds is as follows:
  ID | Name | Command | Task description | Test run command |
 ----|------|---------|------------------|------------------|
-1.1 | Closest zero |```make closestzero```|[Description](tasks/lab1/ClosestZero)| ``` bash ./test.sh ./tests/lab1/ClosestZero/ ./inputs/lab1/ClosestZero ``` |
-1.2 | Hands |``` make hands ```|[Description](tasks/lab1/Hands)| ``` bash ./test.sh ./tests/lab1/Hands/ ./inputs/lab1/Hands ``` |
-1.3 | Symmetric diff |``` make symdiff ```|[Description](tasks/lab1/SymDiff)| |
+1.1 | Closest zero |```make closestzero```|[Description](tasks/lab1/ClosestZero)| ```bash ./test.sh ./tests/lab1/ClosestZero/ ./inputs/lab1/ClosestZero``` |
+1.2 | Hands |``` make hands ```|[Description](tasks/lab1/Hands)| ```bash ./test.sh ./tests/lab1/hands/ ./inputs/lab1/hands``` |
+1.3 | Symmetric diff |``` make symdiff ```|[Description](tasks/lab1/SymDiff)| ```bash ./test.sh ./tests/lab1/DuoArrays/ ./inputs/lab1/DuoArrays``` |
 1.4 | Duo arrays |``` make duoarrays ```|[Description](tasks/lab1/DuoLists)| |
-1.5 | Long sum |``` make longsum ```|[Description](tasks/lab1/LongSum)| |
+1.5 | Long sum |``` make longsum ```|[Description](tasks/lab1/LongSum) | ```bash ./test.sh ./tests/lab1/LongSum/ ./inputs/lab1/LongSum``` |
 
 # TESTS
 **How to run tests**

@@ -78,12 +78,20 @@ void RemoveAt(LIST *list, int position)
     list->Length -= 1;
 }
 
+void InsertAt(LIST *list, int position, int toInsert)
+{
+    AppendToList(list, toInsert);
+    if(position == list->Length-1)
+        return;
+    for(int i = list->Length-1; i > position; i--)
+        *(list->array + i) = *(list->array + i - 1);
+    *(list->array + position ) = toInsert;
+}
+
 void MapSortedList(LIST *list)
 {
     if(list->Length <= 1)
-    {
         return;
-    }
     int PreviousValue = list->array[0];
     int i = 1;
     while(i < list->Length)

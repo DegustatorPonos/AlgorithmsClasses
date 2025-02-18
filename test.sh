@@ -19,6 +19,7 @@ InpFile=$2
 RunTest() {
     echo "Running the test \"${1}\""
     cat $1 > $InpFile
+    sed -i "s/\r//g" $InpFile
     result="${BinName}"
     if [[ $($BinName | sed -e 's/[[:space:]]*$//') == $(cat $2 | sed -e 's/[[:space:]]*$//') ]]; then
         echo Test passed

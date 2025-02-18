@@ -17,5 +17,5 @@ symdiff: List Sort
 duoarrays: List 
 	cc lab1/DuoArrays.c build/List.o -o Result.out
 
-longsum: Longop
-	cc lab1/LongSum.c build/Longop.o -o Result.out
+longsum: Longop List
+	cc lab1/LongSum.c build/Longop.o build/List.o -o Result.out

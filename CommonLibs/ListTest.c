@@ -18,6 +18,9 @@ int main()
     RemoveAt(list, 1);
     printf("Removed 2nd element: ");
     PrintListInfo(list);
+    InsertAt(list, 1, 2);
+    printf("Insterted 2nd element: ");
+    PrintListInfo(list);
     MapSortedList(list);
     printf("Mapping: ");
     PrintListInfo(list);
