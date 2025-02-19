@@ -36,13 +36,13 @@ int main()
     
     // Filling up and sorting the first array
     LIST *List1 = GetArrayUntilZero(parts, " ");
-    Bubblesort(List1->array, List1->Length);
+    QuickSort(List1->array, 0, List1->Length - 1);
     MapSortedList(List1);
     // PrintListInfo(List1);
 
     // Filling up and sorting the second array
     LIST *List2 = GetArrayUntilZero(parts, " ");
-    Bubblesort(List2->array, List2->Length);
+    QuickSort(List2->array, 0, List2->Length - 1);
     MapSortedList(List2);
     // PrintListInfo(List2);
 
@@ -75,10 +75,11 @@ int main()
 LIST *GetArrayUntilZero(char *input, const char* separator)
 {
     LIST *outpList = ListInit();
-    while(strcmp(input, "0"))
+    while(input != NULL && strcmp(input, "0") != 0)
     {
         int part = atoi(input);
-        AppendToList(outpList, part);
+        if(part != 0)
+            AppendToList(outpList, part);
         input = strtok(NULL, separator);
     }
     return outpList;

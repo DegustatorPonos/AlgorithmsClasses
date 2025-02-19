@@ -8,6 +8,7 @@ LIST *ListInit()
 {
     LIST *outp = malloc(sizeof(LIST));
     outp->array = malloc(sizeof(int));
+    outp->Capacity=1;
     return outp;
 }
 
