@@ -30,6 +30,7 @@ RunTest() {
         echo --------------------
         cat $2
     fi
+    /usr/bin/time -f "Memory: %M kb" $BinName > /dev/null
     echo ====================
 }
 
