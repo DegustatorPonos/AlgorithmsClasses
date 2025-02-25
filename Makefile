@@ -22,3 +22,6 @@ longsum: Longop List
 
 polynom: 
 	cc lab1/polynom.c -o Result.out
+
+twoheaps:
+	cc lab1/TwoHeaps.c -o Result.out

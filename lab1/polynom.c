@@ -1,4 +1,3 @@
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -66,7 +65,7 @@ int main()
         buffer = fgets(buffer, fileLength, fptr);
         mainPolynom->polinomArguments[i] = atol(buffer);
     }
-    PrintPolynom(mainPolynom);
+    // PrintPolynom(mainPolynom);
 
     // Calculating solutions
     for(int i = 0; i < mainPolynom->CalculatedAmmount; i++)
@@ -95,7 +94,7 @@ long GetToPowerByMod(long arg, int power, long x, long mod)
 
 void CalculatePolynomResultByMod(POLYNOM *inp, long x)
 {
-    printf("Calculating polynom for value %ld\n", x);
+    // printf("Calculating polynom for value %ld\n", x);
     long returnSum = inp->polinomArguments[0]; // The x^0 is always 1 so this will always be a result
     for(int i = 1; i <= inp->Length; i++)
     {
