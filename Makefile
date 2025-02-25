@@ -25,3 +25,6 @@ polynom:
 
 twoheaps:
 	cc lab1/TwoHeaps.c -o Result.out
+
+magajarah:
+	cc lab1/magajarah.c -o Result.out
