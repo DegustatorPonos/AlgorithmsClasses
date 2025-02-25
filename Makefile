@@ -19,3 +19,6 @@ duoarrays: List
 
 longsum: Longop List
 	cc lab1/LongSum.c build/Longop.o build/List.o -o Result.out
+
+polynom: 
+	cc lab1/polynom.c -o Result.out
