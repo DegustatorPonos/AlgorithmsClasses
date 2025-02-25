@@ -14,15 +14,14 @@ int GetFileSize(FILE *fptr)
 }
 
 typedef struct {
-    char X;
-    char Y;
+    unsigned char X;
+    unsigned char Y;
 }Vector2;
 
 typedef struct {
     int MapSize;
     int **Map;
     int discovededCombinationsAmmount;
-    char **combinations;
     Vector2 **CurrentStack;
     int MaxStackLength;
     int CurrentStackLength;
@@ -118,50 +117,75 @@ void PrintMap(Map *inp)
     }
 }
 
-void AddIfUnique(Map *inp, char x, char y)
+void Bubblesort(unsigned short *array, int length)
 {
-    // Getting the "hashe"
-    unsigned char *serialized = malloc(inp->MaxStackLength + 1);
-    for(int i = 0; i < inp->MaxStackLength; i++)
+    if(length < 2)
+        return;
+    bool IsSorted = false;
+    while(!IsSorted)
     {
-        serialized[i] = inp->CurrentStack[i]->Y + (inp->CurrentStack[i]->X << 4);
-    }
-    serialized[inp->MaxStackLength] = EOF;
-    for(int i = 0; i < inp->discovededCombinationsAmmount; i++)
-        if(strcmp((char*)serialized, inp->combinations[i]) == 0)
-            return;
-    inp->combinations[inp->discovededCombinationsAmmount] = (char*)serialized;
-    inp->discovededCombinationsAmmount++;
-}
-
-void SolveForMap(Map *inp) 
-{
-    for(char x = 0; x < inp->MapSize; x++)
-        for(char y = 0; y < inp->MapSize; y++)
+        IsSorted = true;
+        int index = 0;
+        if(index == length - 1)
+            continue;
+        for(int i = 0; i < length - 1; i++)
         {
-            if(inp->Map[x][y])
-                continue;
-            if(inp->CurrentStackLength == inp->MaxStackLength - 1)
+            if(array[i] > array[i+ 1])
             {
-                inp->CurrentStack[inp->CurrentStackLength]->X = x;
-                inp->CurrentStack[inp->CurrentStackLength]->Y = y;
-                inp->CurrentStackLength++;
-                AddIfUnique(inp, x, y);
-                inp->CurrentStackLength--;
-            }
-            else
-            {
-                int i = inp->CurrentStackLength;
-                inp->CurrentStack[i]->X = x;
-                inp->CurrentStack[i]->Y = y;
-                inp->CurrentStackLength++;
-                // Recutsion
-                RecalculateMap(inp);
-                SolveForMap(inp);
-                inp->CurrentStackLength--;
-                RecalculateMap(inp);
+                IsSorted = false;
+                unsigned short buffer = array[i];
+                array[i] = array[i+ 1];
+                array[i+ 1] = buffer;
             }
         }
+    }
+}
+
+void AddIfUnique(Map *inp)
+{
+    // inp->combinations[inp->discovededCombinationsAmmount] = (char*)serialized;
+    inp->discovededCombinationsAmmount++;
+    return;
+}
+
+bool CanPlaceHere(int x, int y, Map *inp)
+{
+    for(int i = 0; i < inp->CurrentStackLength; i++)
+    {
+        if(x == inp->CurrentStack[i]->X || y == inp->CurrentStack[i]->Y 
+                || (x - y) == (inp->CurrentStack[i]->X - inp->CurrentStack[i]->Y)
+                || (x + y) == (inp->CurrentStack[i]->X + inp->CurrentStack[i]->Y))
+            return false;
+        int dx = x - inp->CurrentStack[i]->X;
+        if(dx < 0) dx *= -1;
+        int dy = y - inp->CurrentStack[i]->Y;
+        if(dy < 0) dy *= -1;
+        if((dx == 1 && dy == 2) || (dx == 2 && dy == 1))
+            return false;
+    }
+    return true;
+}
+
+void SolveForMap(Map *inp, int start) 
+{
+    if(inp->CurrentStackLength == inp->MaxStackLength)
+    {
+        AddIfUnique(inp);
+        return;
+    }
+    for(int i = start; i < inp->MapSize * inp->MapSize; i++)
+    {
+        int x = i / inp->MapSize;
+        int y = i % inp->MapSize;
+        if(!CanPlaceHere(x, y, inp))
+            continue;
+        int j = inp->CurrentStackLength;
+        inp->CurrentStack[j]->X = x;
+        inp->CurrentStack[j]->Y = y;
+        inp->CurrentStackLength++;
+        SolveForMap(inp, i+1);
+        inp->CurrentStackLength--;
+    }
 }
 
 int main() 
@@ -185,16 +209,12 @@ int main()
     mainMap->CurrentStack = malloc(sizeof(Vector2*));
     for(int i = 0; i < ammount; i++)
         mainMap->CurrentStack[i] = malloc(sizeof(Vector2));
-    mainMap->Map = malloc(sizeof(bool*) * size);
-    for(int i = 0; i < size; i++)
-        mainMap->Map[i] = malloc(sizeof(int) * size);
-    mainMap->combinations = malloc(sizeof(char*) * 1024*1024);
 
     // Solving
 
-    SolveForMap(mainMap);
-    printf("hashe len: %d\n", mainMap->discovededCombinationsAmmount);
-    PrintMap(mainMap);
+    SolveForMap(mainMap, 0);
+    printf("%d\n", mainMap->discovededCombinationsAmmount);
+    // PrintMap(mainMap);
 
     // I don't posess the willpower to free this abomination
     free(buff);
