@@ -27,4 +27,8 @@ twoheaps:
 	cc lab1/TwoHeaps.c -o Result.out
 
 magajarah:
-	cc lab1/magajarah.c  -o Result.out
+	cc lab1/magajarah.c -o Result.out
+
+trees: 
+	cc lab1/Trees.c -o Result.out
+
