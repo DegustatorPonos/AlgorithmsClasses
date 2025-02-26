@@ -32,3 +32,5 @@ magajarah:
 trees: 
 	cc lab1/Trees.c -o Result.out
 
+classicsort: List Sort
+	cc lab2/classicsort.c build/Sort.o build/List.o -o Result.out

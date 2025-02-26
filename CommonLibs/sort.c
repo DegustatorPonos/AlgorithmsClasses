@@ -34,7 +34,6 @@ void Bubblesort(int* array, int length)
 
 void QuickSort(int* array, int start, int end)
 {
-    // int pivot = array[(end + start)/2];
     int pivot = array[start];
     // Partitioning
     int leftPos = start;
@@ -50,11 +49,56 @@ void QuickSort(int* array, int start, int end)
             swap(array, rightPos, leftPos);
             leftPos++;
             rightPos--;
-        }
+      }
     }
     // Recursion
     if(start < rightPos)
         QuickSort(array, start, rightPos);
     if(leftPos < end)
         QuickSort(array, leftPos, end);
+}
+
+
+// The length of the array must be > SortedLength + 1
+void InsertInThePlace(int *array, int sortedlength, int value)
+{
+    bool IsPreviousGreater = true;
+    bool IsInserted = false;
+    for(int i = sortedlength; i > 0; i--)
+    {
+        if(array[i-1] > value && i > 1)
+        {
+            array[i] = array[i-1];
+        }
+        else {
+            array[i] = value;
+            return;
+        }
+    }
+}
+
+void InsersionSort(int* array, int length)
+{
+    for(int i = 1; i < length; i++)
+    {
+        InsertInThePlace(array, i, array[i]);
+    }
+}
+
+void SwapSort(int* array, int length)
+{
+    for(int i = 0; i < length - 1; i++)
+    {
+        int MinPosition = i;
+        int minValue = array[i];
+        for(int j = i; j < length; j++)
+        {
+            if(array[j] < minValue)
+            {
+                minValue = array[j];
+                MinPosition = j;
+            }
+        }
+        swap(array, i, MinPosition);
+    }
 }

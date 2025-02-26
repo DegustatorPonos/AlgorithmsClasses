@@ -12,9 +12,13 @@ int main()
         AppendToList(list, initListData[i]);
     printf("Unsorted: ");
     PrintListInfo(list);
-    QuickSort(list->array, 0, list->Length - 1);
+    // SwapSort(list->array, list->Length);
+    InsersionSort(list->array, list->Length);
+    // QuickSort(list->array, 0, list->Length - 1);
     printf("Sorted: ");
     PrintListInfo(list);
+    return 0;
+
     RemoveAt(list, 1);
     printf("Removed 2nd element: ");
     PrintListInfo(list);
@@ -29,4 +33,8 @@ int main()
     ClearList(list);
     // free(list);
     return 0;
+}
+
+void RunSortList(int *array)
+{
 }
