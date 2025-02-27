@@ -4,6 +4,12 @@ Sort:
 	cc -c ./CommonLibs/sort.c -o build/Sort.o
 Longop:
 	cc -c ./CommonLibs/longop.c -o build/Longop.o
+Bits:
+	cc -c ./CommonLibs/BitUtils.c -o build/Bits.o
+Files:
+	cc -c ./CommonLibs/FileUtils.c -o build/Files.o
+
+#LAB 1 
 
 closestzero:
 	cc lab1/ClosestZero.c -o Result.out
@@ -32,5 +38,5 @@ magajarah:
 trees: 
 	cc lab1/Trees.c -o Result.out
 
-classicsort: List Sort
-	cc lab2/classicsort.c build/Sort.o build/List.o -o Result.out
+rope: Files Bits
+	cc lab1/ropepulling.c build/Files.o build/Bits.o -o Result.out
