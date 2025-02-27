@@ -1,101 +1,76 @@
-Trying to add #____#__________ÿ (success)
-Trying to add #____________#__ÿ (success)
-Trying to add #_________#_____ÿ (success)
-Trying to add #_____________#_ÿ (success)
-Trying to add #______#________ÿ (success)
-Trying to add #__________#____ÿ (success)
-Trying to add #______________#ÿ (success)
-Trying to add _#__#___________ÿ (success)
-Trying to add ____#____#______ÿ (success)
-Trying to add ____#_________#_ÿ (success)
-Trying to add ___##___________ÿ (success)
-Trying to add ____#______#____ÿ (success)
-Trying to add ____#__________#ÿ (success)
-Trying to add _____#__#_______ÿ (success)
-Trying to add ________#____#__ÿ (success)
-Trying to add __#_____#_______ÿ (success)
-Trying to add ___#____#_______ÿ (success)
-Trying to add _______##_______ÿ (success)
-Trying to add ________#______#ÿ (success)
-Trying to add _#__________#___ÿ (success)
-Trying to add _________#__#___ÿ (success)
-Trying to add __#_________#___ÿ (success)
-Trying to add ______#_____#___ÿ (success)
-Trying to add ___#________#___ÿ (success)
-Trying to add _______#____#___ÿ (success)
-Trying to add ___________##___ÿ (success)
-Trying to add _#__#___________ÿ (failed)
-Trying to add _#__________#___ÿ (failed)
-Trying to add _#____#_________ÿ (success)
-Trying to add _#____________#_ÿ (success)
-Trying to add _#_________#____ÿ (success)
-Trying to add _#_____________#ÿ (success)
-Trying to add #____#__________ÿ (failed)
-Trying to add _____#__#_______ÿ (failed)
-Trying to add __#__#__________ÿ (success)
-Trying to add _____#____#_____ÿ (success)
-Trying to add _____#_________#ÿ (success)
-Trying to add ____#____#______ÿ (failed)
-Trying to add _________#__#___ÿ (failed)
-Trying to add ______#__#______ÿ (success)
-Trying to add _________#____#_ÿ (success)
-Trying to add ___#_____#______ÿ (success)
-Trying to add #____________#__ÿ (failed)
-Trying to add ________#____#__ÿ (failed)
-Trying to add __#__________#__ÿ (success)
-Trying to add __________#__#__ÿ (success)
-Trying to add ___#_________#__ÿ (success)
-Trying to add _______#_____#__ÿ (success)
-Trying to add __#_____#_______ÿ (failed)
-Trying to add __#_________#___ÿ (failed)
-Trying to add __#__#__________ÿ (failed)
-Trying to add __#__________#__ÿ (failed)
-Trying to add __#____#________ÿ (success)
-Trying to add __#____________#ÿ (success)
-Trying to add ______#_____#___ÿ (failed)
-Trying to add _#____#_________ÿ (failed)
-Trying to add ______#__#______ÿ (failed)
-Trying to add ___#__#_________ÿ (success)
-Trying to add ______#____#____ÿ (success)
-Trying to add #_________#_____ÿ (failed)
-Trying to add _____#____#_____ÿ (failed)
-Trying to add __________#__#__ÿ (failed)
-Trying to add _______#__#_____ÿ (success)
-Trying to add __________#____#ÿ (success)
-Trying to add #_____________#_ÿ (failed)
-Trying to add ____#_________#_ÿ (failed)
-Trying to add _#____________#_ÿ (failed)
-Trying to add _________#____#_ÿ (failed)
-Trying to add ___#__________#_ÿ (success)
-Trying to add ___________#__#_ÿ (success)
-Trying to add ___##___________ÿ (failed)
-Trying to add ___#____#_______ÿ (failed)
-Trying to add ___#________#___ÿ (failed)
-Trying to add ___#_____#______ÿ (failed)
-Trying to add ___#_________#__ÿ (failed)
-Trying to add ___#__#_________ÿ (failed)
-Trying to add ___#__________#_ÿ (failed)
-Trying to add #______#________ÿ (failed)
-Trying to add _______##_______ÿ (failed)
-Trying to add _______#____#___ÿ (failed)
-Trying to add _______#_____#__ÿ (failed)
-Trying to add __#____#________ÿ (failed)
-Trying to add _______#__#_____ÿ (failed)
-Trying to add #__________#____ÿ (failed)
-Trying to add ____#______#____ÿ (failed)
-Trying to add ___________##___ÿ (failed)
-Trying to add _#_________#____ÿ (failed)
-Trying to add ______#____#____ÿ (failed)
-Trying to add ___________#__#_ÿ (failed)
-Trying to add #______________#ÿ (failed)
-Trying to add ____#__________#ÿ (failed)
-Trying to add ________#______#ÿ (failed)
-Trying to add _#_____________#ÿ (failed)
-Trying to add _____#_________#ÿ (failed)
-Trying to add __#____________#ÿ (failed)
-Trying to add __________#____#ÿ (failed)
-hashe len: 48
-0 0000
-1 0000
-2 0000
-3 0000
+Adding a relationship to 1 with 3
+Adding a relationship to 2 with 5
+Adding a relationship to 5 with 4
+  12345
+1 00100
+2 00001
+3 10000
+4 00001
+5 01010
+7=========================
+11=========================
+Relationship 1 and 4;
+New team! 
+13=========================
+Relationship 1 and 4;
+Relationship 3 and 4;
+New team! 
+14=========================
+Relationship 3 and 4;
+19=========================
+21=========================
+22=========================
+25=========================
+Relationship 1 and 4;
+26=========================
+28=========================
+Relationship 3 and 4;
+39=========================
+43=========================
+Relationship 1 and 4;
+45=========================
+Relationship 1 and 4;
+Relationship 3 and 4;
+46=========================
+Relationship 3 and 4;
+51=========================
+53=========================
+54=========================
+57=========================
+Relationship 1 and 4;
+58=========================
+60=========================
+Relationship 3 and 4;
+71=========================
+75=========================
+Relationship 1 and 4;
+77=========================
+Relationship 1 and 4;
+Relationship 3 and 4;
+78=========================
+Relationship 3 and 4;
+83=========================
+85=========================
+86=========================
+89=========================
+Relationship 1 and 4;
+90=========================
+92=========================
+Relationship 3 and 4;
+103=========================
+107=========================
+Relationship 1 and 4;
+109=========================
+Relationship 1 and 4;
+Relationship 3 and 4;
+110=========================
+Relationship 3 and 4;
+115=========================
+117=========================
+118=========================
+121=========================
+Relationship 1 and 4;
+122=========================
+124=========================
+Relationship 3 and 4;
+1 3 4 

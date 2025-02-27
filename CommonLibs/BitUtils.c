@@ -6,6 +6,6 @@ bool GetBitFromUInt(uint source, int bitNumber)
 {
     if(bitNumber < 0 || bitNumber > 32)
         return false;
-    return source >> bitNumber & 1;
+    return (source >> bitNumber) & 1;
 }
 

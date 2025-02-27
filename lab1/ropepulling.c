@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include "../CommonLibs/FileUtils.h"
 #include "../CommonLibs/BitUtils.h"
 #define FILE_NAME "./inputs/lab1/RopePulling"
@@ -14,6 +15,16 @@ bool GetRelationship(uint *relMatrix, int a, int b)
     return GetBitFromUInt(relMatrix[a], b);
 }
 
+uint GetPowerOfTwo(int power)
+{
+    uint outp = 1;
+    for(int i = 0; i < power; i++)
+    {
+         outp *=2;
+    }
+    return outp;
+}
+
 void AddRelationship(uint *relMatrix, char *relationship)
 {
     char *parts =  strtok(relationship, " ");
@@ -21,8 +32,8 @@ void AddRelationship(uint *relMatrix, char *relationship)
     parts =  strtok(NULL, " ");
     uint player2 = strtoul(parts, NULL, 10);
     printf("Adding a relationship to %d with %u\n", index, player2);
-    relMatrix[index-1] += (1 << (player2-1));
-  relMatrix[player2-1] += (1 << (index-1));
+    relMatrix[index] += (1 << (player2));
+    relMatrix[player2] += (1 << (index));
 }
 
 void PrintMatrix(uint *relMatrix, int size)
@@ -49,17 +60,15 @@ int *GetPlayersFromIndexes(int TeamSize, int playerAmmount, uint inp)
     {
         if(GetBitFromUInt(inp, i))
         {
-            printf("Detected 1 at %d;\n", i);
             if(AddedPlayers == TeamSize)
             {
                 free(outp);
                 return NULL;
             }
-            outp[AddedPlayers] = i;
+            outp[AddedPlayers] = i + 1;
             AddedPlayers++;
         }
     }
-    printf("Added %d players\n", AddedPlayers);
     if(AddedPlayers != TeamSize)
     {
         free(outp);
@@ -92,20 +101,50 @@ int main()
     }
     PrintMatrix(RelationshipMatrix, PlayerCount);
 
-    printf("\nTEST\n");
-    int *temp = GetPlayersFromIndexes(TeamSize, PlayerCount, 19);
-    if(temp == NULL)
+    uint CombinationsAmmount = GetPowerOfTwo(PlayerCount);
+    uint CombinationsStart = 0;
+    uint outp = 0;
+    uint MaxRelationshipAmmount = 0;
+    for(uint i = CombinationsStart; i < CombinationsAmmount; i++)
     {
-        printf("Not enough 1s\n");
-    }
-    else {
-        for(int i = 0; i < TeamSize; i++)
-            printf("%d ", temp[i]);
-        printf("\n");
+        int *Players = GetPlayersFromIndexes(TeamSize, PlayerCount, i);
+        if(Players == NULL)
+        {
+            free(Players);
+            continue;
+        }
+        printf("%d =========================\n", i);
+        int CurrentTeamRel = 0;
+        for(int pa = 0; pa < TeamSize; pa++)
+            for(int pb = pa; pb < TeamSize; pb++)
+            {
+                // printf("Checking the relationship between %d and %d;\n", pa, pb);
+                if(GetRelationship(RelationshipMatrix, Players[pa], Players[pb]))
+                {
+                    printf("Relationship %d and %d;\n", Players[pa], Players[pb]);
+                    CurrentTeamRel++;
+                }
+            }
+        if(CurrentTeamRel > MaxRelationshipAmmount)
+        {
+            printf("New team! \n");
+            MaxRelationshipAmmount = CurrentTeamRel;
+            outp = i;
+        }
+        free(Players);
     }
 
+
+    int *Players = GetPlayersFromIndexes(TeamSize, PlayerCount, outp);
+    for(int i= 0; i< TeamSize; i++)
+    {
+        printf("%d ", Players[i]);
+    }
+    printf("\n");
+    PrintMatrix(RelationshipMatrix, PlayerCount);
     free(buf);
     free(RelationshipMatrix);
+    free(Players);
     fclose(fptr);
     return 0;
 }
