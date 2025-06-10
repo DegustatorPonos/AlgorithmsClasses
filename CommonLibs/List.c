@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "List.h"
 
 
@@ -70,6 +71,7 @@ void RemoveAt(LIST *list, int position)
     {
         free(list->array);
         list->array = malloc(sizeof(int));
+        list->Length = 0;
         return;
     }
     for(int i = position; i < list->Length - 1; i++)
@@ -111,4 +113,58 @@ void PrintListInfo(LIST *list)
 {
     printf("Length: %d; Capacity: %d; Contents: ", list->Length, list->Capacity);
     PrintIntArray(list->array, list->Length, true);
+}
+
+// RING BUFFER
+
+RING_BUFFER *RingBufferInit(int length) {
+    RING_BUFFER *rb = malloc(sizeof(RING_BUFFER));
+    rb->length = length;
+    rb->buffer = malloc(sizeof(int) * length);
+    return rb;
+}
+
+RING_BUFFER *RingBufferInitFromArray(int length, int *baseArray, bool UseExistingArray) {
+    RING_BUFFER *rb = malloc(sizeof(RING_BUFFER));
+    rb->length = length;
+    if(UseExistingArray) {
+        rb->buffer = baseArray;
+    } else {
+        rb->buffer = malloc(sizeof(int) * length);
+        memcpy(rb->buffer, baseArray, sizeof(int) * length);
+    }
+    return rb;
+}
+
+int GetRingBufferIndex(RING_BUFFER *inp, int rawIndex) {
+    if(rawIndex >= 0 && rawIndex < inp->length)
+        return rawIndex;
+    int InRangeByMod = rawIndex % inp->length;
+    if(InRangeByMod >= 0)
+        return InRangeByMod;
+    return inp->length + InRangeByMod;
+}
+
+// Returns the value from ring buffer. 
+// The index is not required to be in the borders of the array.
+int GetFromRingBuffer(RING_BUFFER *inp, int position) {
+    int InArrayIndex = GetRingBufferIndex(inp, position);
+    return inp->buffer[InArrayIndex];
+}
+
+// Writes the value in the ring buffer.
+// The index is not required to be in the borders of the array.
+void WriteInRingBuffer(RING_BUFFER *inp, int position, int value) {
+    int InArrayIndex = GetRingBufferIndex(inp, position);
+    inp->buffer[InArrayIndex] = value;
+}
+
+void PrintRingBuffer(RING_BUFFER *rb) {
+    printf("[");
+    for(int i = 0; i < rb->length; i++) {
+        printf("%d", rb->buffer[i]);
+        if(i != rb->length-1)
+            printf(" ");
+    }
+    printf("] Length: %d\n", rb->length);
 }

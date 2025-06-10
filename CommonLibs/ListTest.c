@@ -1,9 +1,14 @@
-#include "List.c"
+#include "List.h"
 #include "sort.c"
 #include <stdio.h>
 
+void TestRingBuffers();
+
 int main()
 {
+    TestRingBuffers();
+    return 0;
+
     int initDataLength = 9;
     int initListData[] = {1, 9, 3, 52, 10, 7, 9, 12, 10};
 
@@ -35,6 +40,9 @@ int main()
     return 0;
 }
 
-void RunSortList(int *array)
-{
+void TestRingBuffers() {
+    RING_BUFFER *rb = RingBufferInit(3);
+    for(int i = 0; i < 4; i++)
+        WriteInRingBuffer(rb, i, i);
+    PrintRingBuffer(rb);
 }

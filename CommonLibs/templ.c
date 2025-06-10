@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../CommonLibs/FileUtils.c"
+#include "../CommonLibs/FileUtils.h"
 #define FILE_NAME "./inputs/lab_/"
 
 int main()
