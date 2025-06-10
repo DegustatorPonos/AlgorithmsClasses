@@ -7,38 +7,28 @@
 
 #define ERR_MSG "error\n"
 
-void push_front(LIST *deck, int maxVal, int value) {
-    if(deck->Length == maxVal - 1) {
-        printf(ERR_MSG);
+void push_front(RING_BUFFER *deck, int maxVal, int value, int left, int right) {
+    if(GetRingBufferIndex(deck, left) == GetRingBufferIndex(deck, right) && right != left)
         return;
-    }
-    AppendToList(deck, value);
+    WriteInRingBuffer(deck, right, value);
 }
 
-void push_back(LIST *deck, int maxVal, int value) {
-    if(deck->Length == maxVal - 1) {
-        printf(ERR_MSG);
+void push_back(RING_BUFFER *deck, int maxVal, int value, int left, int right) {
+    if(GetRingBufferIndex(deck, left) == GetRingBufferIndex(deck, right) && right != left)
         return;
-    }
-    InsertAt(deck, 0, value);
+    WriteInRingBuffer(deck, left, value);
 }
 
-void pop_front(LIST *deck, int maxVal) {
-    if(deck->Length == 0) {
-        printf(ERR_MSG);
+void pop_front(RING_BUFFER *deck, int maxVal, int left, int right) {
+    if(GetRingBufferIndex(deck, left) == GetRingBufferIndex(deck, right))
         return;
-    }
-    printf("%d\n", deck->array[deck->Length-1]);
-    RemoveAt(deck, deck->Length - 1);
+    printf("%d\n", GetFromRingBuffer(deck, right));
 }
 
-void pop_back(LIST *deck, int maxVal) {
-    if(deck->Length == 0) {
-        printf(ERR_MSG);
+void pop_back(RING_BUFFER *deck, int maxVal, int left, int right) {
+    if(GetRingBufferIndex(deck, left) == GetRingBufferIndex(deck, right))
         return;
-    }
-    printf("%d\n", deck->array[0]);
-    RemoveAt(deck, 0);
+    printf("%d\n", GetFromRingBuffer(deck, left));
 }
 
 int main()
@@ -47,34 +37,40 @@ int main()
     int FileSize = GetFileSize(fptr);
     char *buf = malloc(sizeof(char) * FileSize);
 
-    LIST *deck = ListInit();
     int Commands = ReadIntFromFile(fptr, FileSize);
     int MaxLength = ReadIntFromFile(fptr, FileSize);
+    RING_BUFFER *deck = RingBufferInit(MaxLength);
+
+    int rightBorder = 0;
+    int leftBorder = -1;
 
     for(int i = 0; i < Commands; i++) {
         buf = fgets(buf, FileSize, fptr);
         char *parts = strtok(buf, " ");
         if(strcmp(parts, "push_front") == 0) {
             parts = strtok(NULL, "");
-            push_front(deck, MaxLength, atoi(parts));
+            push_front(deck, MaxLength, atoi(parts), leftBorder, rightBorder);
+            rightBorder++;
             continue;
         }
         if(strcmp(parts, "push_back") == 0) {
             parts = strtok(NULL, "");
-            push_back(deck, MaxLength, atoi(parts));
+            push_back(deck, MaxLength, atoi(parts), leftBorder, rightBorder);
+            leftBorder--;
             continue;
         }
-        if(strcmp(buf, "pop_front\n") == 0) {
-            pop_front(deck, MaxLength);
+        if(strcmp(buf, "pop_front\r\n") == 0) {
+            pop_front(deck, MaxLength, leftBorder, rightBorder);
+            rightBorder--;
             continue;
         }
-        if(strcmp(buf, "pop_back\n") == 0) {
-            pop_back(deck, MaxLength);
+        if(strcmp(buf, "pop_back\r\n") == 0) {
+            leftBorder++; 
+            pop_back(deck, MaxLength, leftBorder, rightBorder);
             continue;
         }
     }
 
-    ClearList(deck);
     free(deck);
     free(buf);
     fclose(fptr);

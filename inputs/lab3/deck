@@ -1,12 +1,6 @@
-10
-10
-push_front -855
-push_front 720
-pop_back
-pop_back
-push_back 844
-pop_back
-push_back 823
-pop_back
+4
+4
+push_front 861
+push_front -819
 pop_back
 pop_back

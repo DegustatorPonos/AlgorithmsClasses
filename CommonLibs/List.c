@@ -150,6 +150,7 @@ int GetRingBufferIndex(RING_BUFFER *inp, int rawIndex) {
 int GetFromRingBuffer(RING_BUFFER *inp, int position) {
     int InArrayIndex = GetRingBufferIndex(inp, position);
     return inp->buffer[InArrayIndex];
+    printf("Requested value from %d\n", InArrayIndex);
 }
 
 // Writes the value in the ring buffer.
@@ -157,6 +158,7 @@ int GetFromRingBuffer(RING_BUFFER *inp, int position) {
 void WriteInRingBuffer(RING_BUFFER *inp, int position, int value) {
     int InArrayIndex = GetRingBufferIndex(inp, position);
     inp->buffer[InArrayIndex] = value;
+    // printf("Written %d in %d\n", value, InArrayIndex);
 }
 
 void PrintRingBuffer(RING_BUFFER *rb) {

@@ -54,10 +54,37 @@ rope: Files Bits
 
 brokenarray: List Files
 	cc lab2/BrokenArray.c build/List.o build/Files.o -o Result.out
+
 eqs: Files
 	cc lab2/eqs.c build/Files.o -o Result.out
 
-# LAB 3
+topthree: Files Sort
+	cc lab2/TopThree.c build/Sort.o build/Files.o -o Result.out
 
+multiparam: Files 
+	cc lab2/multifield.c build/Files.o -o Result.out
+
+hull: Files 
+	cc lab2/hull.c build/Files.o -o Result.out -lm
+
+veryquick: Files LinkedList
+	cc lab2/veryquick.c build/Files.o build/LinkedList.o -o Result.out
+
+inplace: Files
+	cc lab2/ips.c build/Files.o -o Result.out 
+	
+Visitors: Files Sort
+	cc lab2/visitors.c build/Sort.o build/Files.o -o Result.out
+
+Guards: Files 
+	cc lab2/guards.c build/Files.o -o Result.out
+
+Attraction: Files
+	cc lab2/movements.c build/Files.o -o Result.out
+
+# LAB 3
 deck: Files List
 	cc lab3/deck.c build/List.o build/Files.o -o Result.out
+
+millionaires: Files
+	cc lab3/rus.c build/Files.o -o Result.out
