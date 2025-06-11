@@ -88,3 +88,18 @@ deck: Files List
 
 millionaires: Files
 	cc lab3/rus.c build/Files.o -o Result.out
+
+queue: Files List
+	cc lab3/queue.c build/List.o build/Files.o -o Result.out
+
+isheap: Files
+	cc lab3/isheap.c build/Files.o -o Result.out
+
+priorityQueue: Files
+	cc lab3/priorqueue.c build/Files.o -o Result.out
+
+postfix: Files List
+	cc lab3/postfix.c build/List.o build/Files.o -o Result.out
+
+inplaced: Files
+	cc lab3/inplaced.c build/Files.o -o Result.out

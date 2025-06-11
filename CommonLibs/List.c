@@ -170,3 +170,25 @@ void PrintRingBuffer(RING_BUFFER *rb) {
     }
     printf("] Length: %d\n", rb->length);
 }
+
+IntStackElement *Push(IntStackElement *base, int value) {
+    IntStackElement *new = malloc(sizeof(IntStackElement));
+    new->NextNode = base;
+    new->value = value;
+    return new;
+}
+
+IntStackElement *Pop(IntStackElement *base, int *out) {
+    if(base == NULL) return NULL;
+    *out = base->value;
+    return base->NextNode;
+}
+
+void PrintStack(IntStackElement *base) {
+    if(base == NULL) {
+        printf("\n");
+        return;
+    }
+    printf("%d ", base->value);
+    PrintStack(base->NextNode);
+}

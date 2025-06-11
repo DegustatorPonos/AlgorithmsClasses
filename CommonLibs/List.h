@@ -37,3 +37,13 @@ int GetFromRingBuffer(RING_BUFFER *inp, int position);
 // Writes the value in the ring buffer.
 // The index is not required to be in the borders of the array.
 void WriteInRingBuffer(RING_BUFFER *inp, int position, int value);
+
+// Stacks
+typedef struct {
+    int value;
+    void *NextNode;
+} IntStackElement;
+
+IntStackElement *Push(IntStackElement *base, int value);
+IntStackElement *Pop(IntStackElement *base, int *out);
+void PrintStack(IntStackElement *base);

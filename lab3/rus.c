@@ -6,6 +6,7 @@
 #define FILE_NAME "./inputs/lab3/mil"
 
 #define MAX_RECORDS 50000
+#define MAX_NAME_LENGTH 20
 
 typedef struct {
     char *Name;
@@ -24,15 +25,8 @@ typedef struct {
     int CitiesAmmount;
 } Country;
 
-int GetCityIndex(Country *list, char *name) {
-    for(int i = 0; i < list->CitiesAmmount; i++) {
-        if(strcmp(list->cities[i]->Name, name) == 0)
-            return i;
-    }
-    return -1;
-}
-
 int CalculateBestCity(Person **MiliList, int len, int citiesAmmount);
+int GetCityIndex(Country *list, char *name);
 
 int main()
 {
@@ -48,25 +42,55 @@ int main()
     Person **Forbes = malloc(sizeof(Person*) * millAmm);
     for(int i = 0; i < millAmm; i++) {
         Person *newPerson = malloc(sizeof(Person));
-        newPerson->Name = malloc(20);
-        char *BaseCity = malloc(20);
+        newPerson->Name = malloc(MAX_NAME_LENGTH);
+        char *BaseCity = malloc(MAX_NAME_LENGTH);
         fscanf(fptr, "%s %s %llu", newPerson->Name, BaseCity, &newPerson->Balance);
         int CityIndex = GetCityIndex(cityList, BaseCity);
         if(CityIndex == -1) {
             City *newCity = malloc(sizeof(City));
             newCity->Id = cityList->CitiesAmmount;
-            newCity->Name = malloc(20);
+            newCity->Name = malloc(MAX_NAME_LENGTH);
             strcpy(newCity->Name , BaseCity);
             cityList->cities[cityList->CitiesAmmount] = newCity;
             CityIndex = cityList->CitiesAmmount;
             cityList->CitiesAmmount++;
         }
         newPerson->currentCity = cityList->cities[CityIndex]->Id;
-        printf("City ID: %d\n", newPerson->currentCity);
+        // printf("City ID: %d\n", newPerson->currentCity);
         Forbes[i] = newPerson;
     }
-    printf("%d\n", cityList->CitiesAmmount);
-    printf("%s\n", cityList->cities[CalculateBestCity(Forbes, millAmm, cityList->CitiesAmmount)]->Name);
+    // printf("%d\n", cityList->CitiesAmmount);
+    // printf("%s\n", cityList->cities[CalculateBestCity(Forbes, millAmm, cityList->CitiesAmmount)]->Name);
+
+    // Handling transitions
+    int currentDay = 0;
+    int transactionsAmm;
+    fscanf(fptr, "%d", &transactionsAmm);
+    for(int i = 0; i < transactionsAmm; i++) {
+        char *trg = malloc(MAX_NAME_LENGTH);
+        int day;
+        char *newCity = malloc(MAX_NAME_LENGTH);
+        fscanf(fptr, "%s %d %s", trg, &day, newCity);
+        for(int j = 0; j < millAmm; j++) {
+            if(strcmp(Forbes[j]->Name, trg) == 0) {
+                int deltaDay = day - currentDay;
+                int PrevBestCity = CalculateBestCity(Forbes, millAmm, cityList->CitiesAmmount);
+                cityList->cities[PrevBestCity]->DaysWealth += deltaDay;
+                currentDay = day;
+                Forbes[j]->currentCity = GetCityIndex(cityList, newCity);
+                break;
+            }
+        }
+        free(newCity);
+        free(trg);
+    }
+    int PrevBestCity = CalculateBestCity(Forbes, millAmm, cityList->CitiesAmmount);
+    cityList->cities[PrevBestCity]->DaysWealth += 50000-currentDay;
+
+    for(int i = 0; i < cityList->CitiesAmmount; i++) {
+        printf("%s - %d\n", cityList->cities[i]->Name, cityList->cities[i]->DaysWealth);
+    }
+
 
     free(buf);
     fclose(fptr);
@@ -78,17 +102,20 @@ int CalculateBestCity(Person **MiliList, int len, int citiesAmmount) {
     unsigned long long RichestCityWealth = 0;
     int RichestCityID = 0;
     for(int i = 0; i < len; i++) {
-        printf("Current city ID - %d\n", MiliList[i]->currentCity);
         Wealths[MiliList[i]->currentCity] += MiliList[i]->Balance;
-        if(RichestCityWealth < Wealths[MiliList[i]->currentCity]) {
-            RichestCityID = i;
+        if(RichestCityWealth <= Wealths[MiliList[i]->currentCity]) {
+            RichestCityID = MiliList[i]->currentCity;
             RichestCityWealth = Wealths[MiliList[i]->currentCity];
         }
     }
-    for(int i = 0; i < citiesAmmount; i++) {
-        printf("%llu ", Wealths[i]);
-    }
-    printf("\n");
     free(Wealths);
     return RichestCityID;
+}
+
+int GetCityIndex(Country *list, char *name) {
+    for(int i = 0; i < list->CitiesAmmount; i++) {
+        if(strcmp(list->cities[i]->Name, name) == 0)
+            return i;
+    }
+    return -1;
 }
