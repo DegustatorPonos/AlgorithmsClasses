@@ -103,3 +103,34 @@ postfix: Files List
 
 inplaced: Files
 	cc lab3/inplaced.c build/Files.o -o Result.out
+
+# LAB 4
+wires: Files
+	cc lab4/wires.c build/Files.o -o Result.out
+
+brokers: Files
+	cc lab4/brokers.c build/Files.o -o Result.out
+
+intersections: Files
+	cc lab4/intersections.c build/Files.o -o Result.out
+
+strint: Files
+	cc lab4/StrIntersect.c build/Files.o -o Result.out
+
+xerox: Files
+	cc lab4/xerox.c build/Files.o -o Result.out
+
+book: Files Sort
+	cc lab4/book.c build/Sort.o build/Files.o -o Result.out
+
+SumRequest: Files
+	cc lab4/sumrequest.c build/Files.o -o Result.out
+
+arraysearch: Files 
+	cc lab4/arraysearch.c build/Files.o -o Result.out
+
+phone: Files
+	cc lab4/phonebook.c build/Files.o -o Result.out
+
+Cache: Files
+	cc lab4/cache.c build/Files.o -o Result.out
