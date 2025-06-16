@@ -19,6 +19,8 @@ The list of possible builds is as follows:
 1.4 | Duo arrays |``` make duoarrays ```|[Description](tasks/lab1/DuoLists)| |
 1.5 | Long sum |``` make longsum ```|[Description](tasks/lab1/LongSum) | ```bash ./test.sh ./tests/lab1/LongSum/ ./inputs/lab1/LongSum``` |
 
+# TODO: Expand
+
 # TESTS
 **How to run tests**
 - Build teh correct app
